@@ -1,180 +1,206 @@
-# Prime Call
+# 🎥 Prime Call — Real-Time Video Conferencing
 
-A full-stack video conferencing web application — like Zoom, built from scratch. Create or join meetings instantly with HD video, screen sharing, and in-call chat.
+> Connect instantly. No downloads. No hassle. Just open and call.
+
+**Prime Call** is a full-stack video conferencing web app built from scratch using WebRTC, Socket.io, React.js, and Node.js. Users can register, create a meeting room, and share the link — anyone with the link can join the call directly from their browser.
+
+🌐 **Live Demo:** [https://primecall-frontend.onrender.com](https://primecall-frontend.onrender.com)
 
 ---
 
-## Tech Stack
+## ✨ Features
+
+- 🔐 **Auth System** — Register & login with secure password hashing (bcryptjs)
+- 👤 **Guest Join** — Join any room instantly without an account
+- 📹 **HD Video Calls** — Real-time peer-to-peer video via WebRTC
+- 🔗 **Shareable Room Links** — One-click copy, share with anyone
+- 🔇 **Mic & Camera Toggle** — Mute/unmute anytime during a call
+- 🖥️ **Screen Sharing** — Share your screen with all participants
+- 💬 **In-Call Chat** — Send messages while on a video call
+- 📋 **Meeting History** — Logged-in users can view past meetings
+
+---
+
+## 🛠️ Tech Stack
 
 ### Frontend
-| Technology | Purpose |
+| Tech | Purpose |
 |---|---|
-| **React 18** | UI library (component-based JavaScript) |
-| **JavaScript (JSX)** | Application logic and UI components |
-| **React Router v6** | Client-side routing (`/`, `/auth`, `/home`, `/history`, `/:meetingCode`) |
-| **Material UI (MUI) v5** | Buttons, inputs, cards, icons |
-| **Emotion** | CSS-in-JS styling engine used by MUI |
-| **Axios** | HTTP requests to the backend REST API |
-| **Socket.IO Client** | Real-time signaling for WebRTC peer connections |
-| **WebRTC API** | Camera, microphone, screen share, peer-to-peer video |
-| **Create React App** | Build tooling and dev server |
+| React.js | UI framework |
+| React Router DOM | Client-side routing |
+| Socket.io-client | Real-time signaling |
+| Material UI | UI components |
+| WebRTC (native) | Peer-to-peer video/audio |
 
 ### Backend
-| Technology | Purpose |
+| Tech | Purpose |
 |---|---|
-| **Node.js** | JavaScript runtime |
-| **Express.js** | REST API server |
-| **Socket.IO** | WebSocket server for call signaling & chat |
-| **MongoDB + Mongoose** | User accounts and meeting history storage |
-| **bcrypt** | Password hashing |
-| **CORS** | Cross-origin requests from frontend |
+| Node.js + Express | REST API server |
+| Socket.io | WebRTC signaling |
+| MongoDB + Mongoose | Database |
+| bcryptjs | Password hashing |
+| CORS | Cross-origin support |
 
-### Real-Time Communication
-- **WebRTC** — peer-to-peer audio/video streams
-- **Google STUN server** — NAT traversal for connections
-- **Socket.IO** — room join, ICE candidates, chat messages
-
----
-
-## Features
-
-- User registration and login with JWT token auth
-- Start a new meeting or join with a meeting code
-- Guest access (no login required)
-- HD video and audio controls (mute / camera off)
-- Screen sharing
-- In-call text chat
-- Meeting history for logged-in users
-- Responsive UI across desktop and mobile
+### Deployment
+| Service | Platform |
+|---|---|
+| Frontend | Render (Web Service) |
+| Backend | Render (Web Service) |
+| Database | MongoDB Atlas |
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 
 ```
-Zoom/
-├── frontend/                 # React app
-│   ├── public/               # Static assets
-│   └── src/
-│       ├── components/       # Reusable UI (navbar, logo)
-│       ├── contexts/         # AuthContext (login, history)
-│       ├── pages/            # Landing, Auth, Home, History, VideoMeet
-│       ├── styles/           # CSS modules for video call UI
-│       ├── utils/            # withAuth HOC, meeting code generator
-│       ├── App.js            # Routes
-│       ├── theme.js          # MUI theme
-│       └── environment.js    # Backend URL config
+PrimeCall/
 │
-└── backend/                  # Node.js API + Socket.IO
-    └── src/
-        ├── app.js            # Server entry point
-        ├── controllers/      # User & socket logic
-        ├── models/           # MongoDB schemas
-        └── routes/           # REST API routes
+├── frontend/                   # React.js app
+│   ├── public/
+│   │   ├── index.html
+│   │   ├── favicon.ico
+│   │   └── _redirects          # SPA routing fix
+│   └── src/
+│       ├── components/         # Reusable UI components
+│       ├── contexts/           # AuthContext (login/register/history)
+│       ├── pages/
+│       │   ├── LandingPage.jsx
+│       │   ├── Authentication.jsx
+│       │   ├── HomeComponent.jsx
+│       │   ├── VideoMeet.jsx   # Core WebRTC room
+│       │   └── History.jsx
+│       ├── environment.js      # Backend URL config
+│       └── App.js
+│
+├── backend/                    # Node.js + Express API
+│   └── src/
+│       ├── app.js              # Entry point
+│       ├── controllers/        # Business logic
+│       ├── models/             # MongoDB schemas
+│       └── routes/             # API routes
+│
+├── .gitignore
+└── README.md
 ```
 
 ---
 
-## Getting Started
+## ⚙️ Getting Started Locally
 
 ### Prerequisites
-- Node.js (v16+)
-- MongoDB Atlas account (or local MongoDB)
-- Modern browser with camera/mic support (Chrome recommended)
+- Node.js v16+
+- npm v8+
+- MongoDB Atlas account (free tier)
 
-### 1. Backend
+### 1. Clone the repo
+```bash
+git clone https://github.com/harsh7agarwal/PrimeCall.git
+cd PrimeCall
+```
 
+### 2. Setup Backend
 ```bash
 cd backend
 npm install
-npm run dev
 ```
 
-Server runs on **http://localhost:8000**
+Create `backend/.env`:
+```env
+PORT=8000
+MONGO_URI=your_mongodb_atlas_connection_string
+FRONTEND_URL=http://localhost:3000
+```
 
-### 2. Frontend
+Run backend:
+```bash
+node src/app.js
+```
 
+### 3. Setup Frontend
 ```bash
 cd frontend
 npm install
+```
+
+Create `frontend/.env`:
+```env
+REACT_APP_SERVER_URL=http://localhost:8000
+```
+
+Run frontend:
+```bash
 npm start
 ```
 
-App opens on **http://localhost:3000**
+App runs at `http://localhost:3000` 🚀
 
-### 3. Connect Frontend to Backend
+---
 
-Edit `frontend/src/environment.js`:
+## 🔄 How WebRTC Works Here
 
-```javascript
-let IS_PROD = false;  // set false for local development
-
-const server = IS_PROD
-    ? "https://your-deployed-backend.com"
-    : "http://localhost:8000";
-
-export default server;
+```
+User A                  Signaling Server (Socket.io)              User B
+  |                              |                                   |
+  |------- join room ----------->|                                   |
+  |                              |<---------- join room -------------|
+  |<------ user joined ----------|                                   |
+  |                                                                   |
+  |------- SDP Offer ----------->|---------- SDP Offer ------------->|
+  |<------ SDP Answer -----------|<--------- SDP Answer -------------|
+  |------- ICE Candidate ------->|---------- ICE Candidate --------->|
+  |                                                                   |
+  |<======================== P2P Video Stream ========================>|
 ```
 
----
-
-## API Routes
-
-| Method | Endpoint | Description |
-|---|---|---|
-| POST | `/api/v1/users/register` | Create new account |
-| POST | `/api/v1/users/login` | Login, returns JWT token |
-| GET | `/api/v1/users/get_all_activity` | Get meeting history |
-| POST | `/api/v1/users/add_to_activity` | Save meeting to history |
+Socket.io handles the signaling — once both peers exchange SDP and ICE candidates, the video stream goes directly peer-to-peer with no server in between.
 
 ---
 
-## Pages
+## 🚢 Deployment (Render)
 
-| Route | Page | Auth Required |
-|---|---|---|
-| `/` | Landing page | No |
-| `/auth` | Login / Register | No |
-| `/home` | Dashboard (start/join meeting) | Yes |
-| `/history` | Past meetings | Yes |
-| `/:code` | Video call room | No (guest allowed) |
+### Backend — Web Service
+| Field | Value |
+|---|---|
+| Root Directory | `backend` |
+| Build Command | `npm install` |
+| Start Command | `node src/app.js` |
 
----
+### Frontend — Web Service
+| Field | Value |
+|---|---|
+| Root Directory | `frontend` |
+| Build Command | `npm install && npm run build` |
+| Start Command | `npx serve -s build` |
 
-## How a Video Call Works
-
-1. User opens a meeting URL (e.g. `/abc123`)
-2. Enters name in the lobby and grants camera/mic permission
-3. Socket.IO connects to the backend and joins the room
-4. WebRTC creates peer connections between participants
-5. Video/audio streams flow directly between browsers (P2P)
-6. Chat messages go through the Socket.IO server
+> Add environment variables in Render dashboard for both services.
 
 ---
 
-## Environment Variables
+## 📡 API Reference
 
-Backend MongoDB connection is configured in `backend/src/app.js`. For production, use environment variables instead of hardcoded credentials.
+Base URL: `https://primecall-backend.onrender.com/api/v1/users`
 
----
-
-## Scripts
-
-### Frontend
-```bash
-npm start      # Development server
-npm run build  # Production build
-npm test       # Run tests
-```
-
-### Backend
-```bash
-npm run dev    # Development with nodemon
-npm start      # Production
-```
+| Method | Endpoint | Description | Auth |
+|---|---|---|---|
+| POST | `/register` | Create new account | ❌ |
+| POST | `/login` | Login & get token | ❌ |
+| GET | `/get_all_activity` | Get meeting history | ✅ |
+| POST | `/add_to_activity` | Save meeting to history | ✅ |
 
 ---
 
-## License
+## 👨‍💻 Author
 
-ISC
+**Harsh Agarwal**
+- 🐙 GitHub: [@harsh7agarwal](https://github.com/harsh7agarwal)
+- 🎓 BIT Mesra
+
+---
+
+## 📄 License
+
+Open source under the [MIT License](LICENSE).
+
+---
+
+*Built with ❤️ using React, Node.js, WebRTC & Socket.io*
