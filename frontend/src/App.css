@@ -1,96 +1,481 @@
-.landingPageContainer {
-  width: 100vw;
-  height: 100vh;
-  background: url("/public/background.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: white;
-}
+/* ── Brand ── */
 
-.landingPageContainer nav {
-  padding-inline: 1.2rem;
-  padding-block: 1.6rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-}
-
-.landingPageContainer nav h2 {
-  font-size: 1.8rem;
-  font-weight: 500;
-}
-
-.landingPageContainer nav .navlist {
-  display: flex;
-  gap: 1.6rem;
-  cursor: pointer;
-
-}
-
-.landingMainContainer {
-  display: flex;
-  justify-content: space-between;
-  padding-inline: 3rem;
-  height: 80vh;
-  align-items: center;
-}
-
-.landingMainContainer>div:nth-child(1) {
-  font-size: 2.2rem;
-}
-
-.landingMainContainer>div:nth-child(1) div[role='button'] {
-  background: #D97500;
-  width: fit-content;
-  padding: 1rem;
-  border-radius: 20px;
-  margin-top: 1.9rem;
-}
-
-.landingMainContainer>div:nth-child(1) div[role='button'] a {
-  text-decoration: none;
-  color: white;
-  font-size: 1.7rem;
-}
-
-.landingMainContainer>div:nth-child(2) img {
-  height: 70vh;
-  width: auto;
-}
-
-.navBar {
+.brandLogo {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding-inline: 20px;
-  text-align: center;
-
+  gap: 0.6rem;
 }
-.meetContainer {
+
+.brandLogoIcon {
   display: flex;
-  padding-inline: 20px;
-  height: 80vh;
-  gap: 10vw;
+  align-items: center;
   justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  color: white;
 }
 
+.brandLogoLight .brandLogoIcon {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
 
+.brandLogoText {
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--color-text);
+}
 
-.leftPanel {
+.brandLogoLight .brandLogoText {
+  color: var(--color-text-on-dark);
+}
+
+/* ── Navbar ── */
+
+.appNavbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.appNavbarLight {
+  background: rgba(11, 17, 32, 0.6);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.appNavbarActions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.appNavbarActions .navLink {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-sm);
+  transition: color 0.2s, background 0.2s;
+}
+
+.appNavbarLight .appNavbarActions .navLink {
+  color: rgba(248, 250, 252, 0.75);
+}
+
+.appNavbarActions .navLink:hover {
+  color: var(--color-text);
+  background: rgba(79, 70, 229, 0.06);
+}
+
+.appNavbarLight .appNavbarActions .navLink:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.navBtnPrimary {
+  background: var(--color-primary) !important;
+  color: white !important;
+  padding: 0.45rem 1rem !important;
+  border-radius: var(--radius-sm) !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  cursor: pointer;
+  border: none;
+}
+
+.navBtnPrimary:hover {
+  background: var(--color-primary-dark) !important;
+}
+
+/* ── Landing ── */
+
+.landingPage {
+  min-height: 100vh;
+  background: var(--color-bg-dark);
+  color: var(--color-text-on-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.landingPage::before,
+.landingPage::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.landingPage::before {
+  width: 420px;
+  height: 420px;
+  background: rgba(79, 70, 229, 0.35);
+  top: -120px;
+  right: -80px;
+}
+
+.landingPage::after {
+  width: 360px;
+  height: 360px;
+  background: rgba(6, 182, 212, 0.2);
+  bottom: -100px;
+  left: -60px;
+}
+
+.landingHero {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 5rem 2rem 4rem;
+  text-align: center;
+}
+
+.heroBadge {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #c7d2fe;
+  background: rgba(79, 70, 229, 0.2);
+  border: 1px solid rgba(129, 140, 248, 0.3);
+  margin-bottom: 1.5rem;
+}
+
+.landingHero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  margin-bottom: 1rem;
+}
+
+.landingHero h1 span {
+  background: linear-gradient(135deg, #818cf8, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.landingHero > p {
+  font-size: 1.05rem;
+  color: rgba(248, 250, 252, 0.65);
+  line-height: 1.7;
+  max-width: 520px;
+  margin: 0 auto 2rem;
+}
+
+.heroActions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 3.5rem;
+}
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.75rem;
+  background: var(--color-primary);
+  color: white;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btnPrimary:hover {
+  background: var(--color-primary-dark);
+}
+
+.btnGhost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.75rem;
+  background: rgba(255, 255, 255, 0.06);
+  color: white;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.btnGhost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.featureCard {
+  padding: 1.25rem 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.featureCard svg {
+  font-size: 1.5rem !important;
+  color: var(--color-primary-light);
+  margin-bottom: 0.5rem;
+}
+
+.featureCard h3 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.featureCard p {
+  font-size: 0.75rem;
+  color: rgba(248, 250, 252, 0.5);
+  line-height: 1.4;
+}
+
+/* ── App Shell ── */
+
+.appShell {
+  min-height: 100vh;
+  background: var(--color-bg-light);
+}
+
+.pageContent {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+}
+
+.pageHeader {
+  margin-bottom: 2rem;
+}
+
+.pageHeader h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.35rem;
+}
+
+.pageHeader p {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+/* ── Home ── */
+
+.homeGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.actionCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.actionCardIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.actionCardIcon.start {
+  background: rgba(79, 70, 229, 0.1);
+  color: var(--color-primary);
+}
+
+.actionCardIcon.join {
+  background: rgba(6, 182, 212, 0.1);
+  color: var(--color-accent);
+}
+
+.actionCard h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.actionCard p {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+}
+
+.joinForm {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+}
+
+/* ── History ── */
+
+.historyList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.meetingCodePill {
+  display: inline-block;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  background: rgba(79, 70, 229, 0.08);
+  color: var(--color-primary);
+  border-radius: 6px;
+  letter-spacing: 0.05em;
+}
+
+.historyEmpty {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  color: var(--color-text-muted);
+}
+
+.historyEmpty svg {
+  font-size: 2.5rem !important;
+  opacity: 0.35;
+  margin-bottom: 1rem;
+}
+
+/* ── Auth side panel ── */
+
+.authSidePanel {
+  background: linear-gradient(160deg, #0b1120 0%, #1e1b4b 50%, #0b1120 100%);
+  color: var(--color-text-on-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  gap: 1.5rem;
+}
+
+.authFeatureList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.authFeatureItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: rgba(248, 250, 252, 0.7);
+}
+
+.authFeatureItem svg {
+  color: var(--color-primary-light);
+  font-size: 1.1rem !important;
+}
+
+/* ── Video lobby ── */
+
+.lobbyContainer {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-dark);
+  padding: 2rem;
+}
+
+.lobbyCard {
+  width: 100%;
+  max-width: 480px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  color: white;
+  text-align: center;
+}
+
+.lobbyCard h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.lobbyCard > p {
+  color: rgba(248, 250, 252, 0.6);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.lobbyPreview {
+  margin: 1.5rem 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #000;
+  aspect-ratio: 16/9;
+}
+
+.lobbyPreview video {
+  width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-
+  object-fit: cover;
 }
 
-.rightPanel {
-  display: flex;
-  align-items: center;
-}
+/* ── Responsive ── */
 
-.rightPanel > img {
-  width: 30vw;
-  height: auto;
-  border-radius: 20px;
+@media (max-width: 768px) {
+  .featureGrid {
+    grid-template-columns: 1fr;
+    max-width: 280px;
+  }
+
+  .homeGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .joinForm {
+    flex-direction: column;
+  }
+
+  .landingHero {
+    padding: 3rem 1.5rem;
+  }
+
+  .appNavbar {
+    padding: 0.85rem 1.25rem;
+  }
 }
